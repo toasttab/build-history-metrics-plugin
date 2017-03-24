@@ -1,6 +1,5 @@
-<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form">
-<l:layout norefresh="true">
-        <l:main-panel>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define" xmlns:l="/lib/layout" xmlns:t="/lib/hudson" xmlns:f="/lib/form" xmlns:i="jelly:fmt" xmlns:local="local">
     <style>
         #aggregate-build-metrics {
             margin-top: 1em;
@@ -64,6 +63,4 @@
                     </tr>
             </tbody>
         </table>
-        </l:main-panel>
-     </l:layout>
 </j:jelly>
