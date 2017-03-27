@@ -31,9 +31,8 @@ public class GraphUtil {
 
         //Need to optimise this, it's O(n^2)
         for(int i=0; i<buildMessages.size(); i++){
-
-            List<BuildMessage> sublist = buildMessages.subList(i, buildMessages.size() - 1);
-            System.out.println(sublist.get(0));
+            List<BuildMessage> sublist = buildMessages.size() == 1 ? buildMessages.subList(i, i) : buildMessages.subList(i, buildMessages.size() - 1);
+            //System.out.println(sublist.get(0));
             StandardDeviationMetric metric = new StandardDeviationMetric("Graph", sublist);
             series1.add(metric.calculateMetric(), i);
         }

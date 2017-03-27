@@ -15,13 +15,15 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.logging.Logger;
+import hudson.model.Run;
+
 
 //TODO Wrap some tests around this class
 public class ReadUtil {
 
     private static final Logger LOGGER = Logger.getLogger(ReadUtil.class.getName());
 
-    public static Properties getJobProperties(Class metricType, Job job) {
+    public static Properties getJobProperties(Class metricType, Run job) {
         try {
             File rootDir = job.getRootDir();
             String filename = StoreUtil.getPropertyFilename(metricType);
@@ -35,7 +37,7 @@ public class ReadUtil {
         }
     }
 
-    public static String getColumnResult(Job job, String resultKey) {
+    public static String getColumnResult(Run job, String resultKey) {
         Properties properties = ReadUtil.getJobProperties(MTTRMetric.class, job);
         if (properties == null) {
             LOGGER.info("property file can't find");

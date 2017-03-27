@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
+import hudson.model.Run;
+
 
 public class MetricsAction implements Action {
 
@@ -30,13 +32,19 @@ public class MetricsAction implements Action {
     public static final String STDDEV_LAST_7_DAYS = "stddevLast7days";
     public static final String STDDEV_LAST_30_DAYS = "stddevLast30days";
     public static final String STDDEV_ALL_BUILDS = "stddevAllBuilds";
-    
+
     public static final String ALL_BUILDS_FILE_NAME = "all_builds.mr";
 
+
+    //public final Job job;
+    public final Run<?,?> run;
+
+    @Deprecated
     private AbstractProject project;
 
-    public MetricsAction(AbstractProject project) {
-        this.project = project;
+
+    public MetricsAction(Run<?,?> build) {
+      this.run = build;
     }
 
     @Override
@@ -57,9 +65,9 @@ public class MetricsAction implements Action {
         Map<String, String> result = new HashMap<String, String>();
 
         Properties properties = new Properties();
-        properties.putAll(ReadUtil.getJobProperties(MTTRMetric.class, project));
-        properties.putAll(ReadUtil.getJobProperties(MTTFMetric.class, project));
-        properties.putAll(ReadUtil.getJobProperties(StandardDeviationMetric.class, project));
+        properties.putAll(ReadUtil.getJobProperties(MTTRMetric.class, run));
+        properties.putAll(ReadUtil.getJobProperties(MTTFMetric.class, run));
+        properties.putAll(ReadUtil.getJobProperties(StandardDeviationMetric.class, run));
 
         result.put(MetricsAction.MTTR_LAST_7_DAYS, getPropertyOrDefault(properties, MetricsAction.MTTR_LAST_7_DAYS, "0"));
         result.put(MetricsAction.MTTR_LAST_30_DAYS, getPropertyOrDefault(properties, MetricsAction.MTTR_LAST_30_DAYS, "0"));
@@ -81,15 +89,6 @@ public class MetricsAction implements Action {
                 properties.getProperty(key):defaultValue;
 
         return Util.getPastTimeString(Long.parseLong(duration));
-    }
-
-    @Extension
-    public static final class ProjectActionFactory extends TransientProjectActionFactory {
-
-        @Override
-        public Collection<? extends Action> createFor(AbstractProject target) {
-            return Collections.singleton(new MetricsAction(target));
-        }
     }
 
     @Extension

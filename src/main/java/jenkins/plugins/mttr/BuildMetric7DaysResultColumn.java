@@ -6,6 +6,8 @@ import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 import jenkins.plugins.util.ReadUtil;
 import org.kohsuke.stapler.DataBoundConstructor;
+import hudson.model.Run;
+
 
 import java.io.IOException;
 
@@ -16,12 +18,12 @@ public class BuildMetric7DaysResultColumn extends ListViewColumn implements Resu
     }
 
     @Override
-    public String getResult(Job job) throws IOException {
+    public String getResult(Run<?,?> job) throws IOException {
         return ReadUtil.getColumnResult(job, MetricsAction.MTTR_LAST_7_DAYS);
     }
 
     @Override
-    public String getGraph(Job job) throws IOException {
+    public String getGraph(Run<?,?> job) throws IOException {
         return null;
     }
 

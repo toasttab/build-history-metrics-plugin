@@ -2,6 +2,7 @@ package jenkins.plugins.mttr;
 
 import hudson.Extension;
 import hudson.model.Job;
+import hudson.model.Run;
 import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 import jenkins.plugins.util.ReadUtil;
@@ -16,12 +17,12 @@ public class BuildMetricAllTimeResultColumn extends ListViewColumn  implements R
     }
 
     @Override
-    public String getResult(Job job) throws IOException {
+    public String getResult(Run<?,?> job) throws IOException {
         return ReadUtil.getColumnResult(job, MetricsAction.MTTR_ALL_BUILDS);
     }
 
     @Override
-    public String getGraph(Job job) throws IOException {
+    public String getGraph(Run<?,?> job) throws IOException {
         return null;
     }
 
