@@ -1,18 +1,2 @@
-Jenkins Build History Metrics Plugin
-======================================
-
-This plugin provides metrics based on all historical builds for a job.
-
-Currently supported metrics
-- Mean time to Failure
-- Mean time to Recovery
-- Build Time Standard Deviation
-
-Roadmap
-- MTTF columns in list view
-- Time series charts for metrics
-
-See https://wiki.jenkins-ci.org/display/JENKINS/Build+History+Metrics+Plugin for more information.
-
-[![Build Status](https://jenkins.ci.cloudbees.com/buildStatus/icon?job=plugins/build-history-metrics-plugin)](https://jenkins.ci.cloudbees.com/job/plugins/job/build-history-metrics-plugin/)
-
+# build-history-metrics-plugin
+This repository has been migrated to [github.toasttab.com/toasttab/build-history-metrics-plugin](https://github.toasttab.com/toasttab/build-history-metrics-plugin)
